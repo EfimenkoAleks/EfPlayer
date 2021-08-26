@@ -17,7 +17,8 @@ var window: UIWindow?
         
         let window = UIWindow()
 //        let module = HomeWireFrame.create()
-        let module = VideoWireFrame.create()
+//        let module = VideoWireFrame.create()
+        let module = AudioWireFrame.create()
         let navigation = UINavigationController(rootViewController: module)
         window.rootViewController = navigation
         window.makeKeyAndVisible()
