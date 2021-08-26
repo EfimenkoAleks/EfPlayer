@@ -16,7 +16,8 @@ var window: UIWindow?
         // Override point for customization after application launch.
         
         let window = UIWindow()
-        let module = HomeWireFrame.create()
+//        let module = HomeWireFrame.create()
+        let module = VideoWireFrame.create()
         let navigation = UINavigationController(rootViewController: module)
         window.rootViewController = navigation
         window.makeKeyAndVisible()
