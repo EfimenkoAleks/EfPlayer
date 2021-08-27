@@ -8,29 +8,25 @@
 import Foundation
 import Photos
 
-protocol VideoServiceDelegate: AnyObject {
-    func videoListDidChange()
-}
-
 protocol VideoServiceProtocol: Service {
-    var delegate: VideoServiceDelegate? { get set }
+    var videoList: [URL] { get }
 }
 
 class VideoService {
-    internal var delegate: VideoServiceDelegate?
-    private(set) var dataSource: [URL] = []
+
+    private(set) var videoList = [URL]()
     internal var state: ServiceState = .initial
 }
 
 extension VideoService: VideoServiceProtocol {
     
     func reload(completionHandler: @escaping (ServiceState) -> Void) {
+        self.videoList = []
         self.state = .loading
 
         self.fetchVideo { [weak self] (result) in
             if result.count > 0 {
-                self?.dataSource = result
-                self?.delegate?.videoListDidChange()
+                self?.videoList = result
                 self?.state = .loaded
                 completionHandler(.loaded)
             }
