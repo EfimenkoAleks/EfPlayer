@@ -1,32 +1,42 @@
 //
-//  HomeViewModel.swift
+//  VideoService.swift
 //  EfPlayer
 //
-//  Created by user on 23.08.2021.
+//  Created by user on 26.08.2021.
 //
 
 import Foundation
 import Photos
 
-class HomeViewModel: HomeViewModelProtocol {
-  
-    private var router: HomeRouter?
-    private var videoUrlArrey: [URL] = []
-    var videos: [URL] = []
-    private var titleForHeader: [String] = []
-    var titleHeader: [String] = []
-    weak var delegate: HomeDelegate?
+protocol VideoServiceDelegate: AnyObject {
+    func videoListDidChange()
+}
+
+protocol VideoServiceProtocol: Service {
+    var delegate: VideoServiceDelegate? { get set }
+}
+
+class VideoService {
+    internal var delegate: VideoServiceDelegate?
+    private(set) var dataSource: [URL] = []
+    internal var state: ServiceState = .initial
+}
+
+extension VideoService: VideoServiceProtocol {
     
-    init(router: HomeRouter) {
-        self.router = router
-        self.titleForHeader = ["Google Drive", "Video", "Music"]
-        self.titleHeader = self.titleForHeader
+    func reload(completionHandler: @escaping (ServiceState) -> Void) {
+        self.state = .loading
+
         self.fetchVideo { [weak self] (result) in
-            self?.delegate?.fetchVideo()
-            self?.videoUrlArrey = result
-            self?.videos = result
+            if result.count > 0 {
+                self?.dataSource = result
+                self?.delegate?.videoListDidChange()
+                self?.state = .loaded
+                completionHandler(.loaded)
+            }
         }
     }
+    
     
     private func fetchVideo(completion: @escaping ([URL]) -> Void) {
         let fetchOptions = PHFetchOptions()
@@ -47,6 +57,4 @@ class HomeViewModel: HomeViewModelProtocol {
         }
         completion(videoUrls)
     }
-    
-    
 }
