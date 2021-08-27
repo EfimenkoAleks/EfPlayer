@@ -12,4 +12,5 @@ struct DIContainer {
     static var `default` = Self()
     
     lazy var videoService: VideoServiceProtocol = VideoService()
+    lazy var configurationService: ConfigurationService = ConfigurationServiceImplementation(videoService: videoService)
 }

@@ -36,7 +36,7 @@ class VideoViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.viewModel.delegate = self
+//        self.viewModel.delegate = self
         self.view.backgroundColor = .black
         self.addBarButton()
     }

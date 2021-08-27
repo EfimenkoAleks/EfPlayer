@@ -12,7 +12,7 @@ protocol VideoViewModelInputProtocol: class {
 }
 
 protocol VideoViewModelOutputProtocol: class {
-    var delegate: VideoDelegate? { get set }
+//    var delegate: VideoDelegate? { get set }
 }
 
 protocol VideoViewModelProtocol: VideoViewModelInputProtocol, VideoViewModelOutputProtocol {}
@@ -21,6 +21,6 @@ protocol VideoRouterProtocol: class {}
 
 protocol VideoViewControllerProtocol: class {}
 
-protocol VideoDelegate: class {
-    func fetchVideo()
-}
+//protocol VideoDelegate: class {
+//    func fetchVideo()
+//}
