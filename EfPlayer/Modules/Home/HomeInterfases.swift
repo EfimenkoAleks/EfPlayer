@@ -23,7 +23,7 @@ protocol HomeRouterProtocol {
     
 }
 
-protocol HomeDelegate {
+protocol HomeDelegate: class {
     func fetchVideo()
 }
 

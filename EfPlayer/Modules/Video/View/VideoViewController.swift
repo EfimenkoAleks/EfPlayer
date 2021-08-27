@@ -36,6 +36,7 @@ class VideoViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.viewModel.delegate = self
         self.view.backgroundColor = .black
         self.addBarButton()
     }
@@ -69,6 +70,12 @@ class VideoViewController: UIViewController {
         
     }
 
+}
+
+extension VideoViewController: VideoDelegate {
+    func fetchVideo() {
+        self.collectioView.reloadData()
+    }
 }
 
 extension VideoViewController: VideoViewControllerProtocol {}
