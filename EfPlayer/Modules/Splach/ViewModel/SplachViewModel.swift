@@ -9,7 +9,7 @@ import Foundation
 
 class SplachViewModel: SplachViewModelProtocol {
     
-    weak var router: SplachRouterProtocol?
+    private var router: SplachRouterProtocol?
     private let configurationService: ConfigurationService
     
     init(
@@ -34,6 +34,8 @@ class SplachViewModel: SplachViewModelProtocol {
             guard let self = self else {return}
               //      need to create a mein modul
             //        self.router.mainModule
+            
+            self.router?.routeToMain()
         }
     }
 }

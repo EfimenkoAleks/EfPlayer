@@ -16,7 +16,7 @@ protocol SplachViewModelOutputProtocol: class {}
 protocol SplachViewModelProtocol: SplachViewModelInputProtocol, SplachViewModelOutputProtocol {}
 
 protocol SplachRouterProtocol: class {
-    
+    func routeToMain()
 }
 
 protocol SplachViewControllerProtocol: class {}
