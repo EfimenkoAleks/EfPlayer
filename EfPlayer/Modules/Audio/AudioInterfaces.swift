@@ -17,8 +17,8 @@ protocol AudioViewModelProtocol: AudioViewModelInputProtocol, AudioViewModelOutp
     
 }
 
-protocol AudioRouterModuleProtocol: class {
+protocol AudioRouterProtocol: class {
 }
 
-protocol AudioViewControllerModuleProtocol: class {
+protocol AudioViewControllerProtocol: class {
 }

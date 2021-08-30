@@ -9,14 +9,20 @@ import UIKit
 
 class VideoWireFrame {
     
-    static func create() -> UIViewController {
+    public struct VideoModule {
+        let view: UIViewController
+        let viewModel: VideoViewModelProtocol
+        let router: VideoRouterProtocol
+    }
+    
+    static func create() -> VideoModule {
         
         let view = VideoViewController()
         let router = VideoRouter(controller: view)
         let viewModel = VideoViewModel(router: router)
         view.viewModel = viewModel
         view.router = router
-        
-        return view
+                
+        return VideoModule(view: view, viewModel: viewModel, router: router)
     }
 }

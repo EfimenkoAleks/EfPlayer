@@ -9,13 +9,19 @@ import UIKit
 
 class HomeWireFrame {
     
-    static func create() -> UIViewController {
+    public struct HomeModule {
+        let view: UIViewController
+        let viewModel: HomeViewModelProtocol
+        let router: HomeRouterProtocol
+    }
+    
+    static func create() -> HomeModule {
         let view = HomeViewController()
         let router = HomeRouter(controller: view)
         let viewModel = HomeViewModel(router: router)
         view.viewModel = viewModel
         view.router = router
         
-        return view
+        return HomeModule(view: view, viewModel: viewModel, router: router)
     }
 }

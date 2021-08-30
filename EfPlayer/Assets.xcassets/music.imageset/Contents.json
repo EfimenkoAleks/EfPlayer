@@ -1,11 +1,11 @@
 {
   "images" : [
     {
-      "filename" : "music.pdf",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
+      "filename" : "music.pdf",
       "idiom" : "universal",
       "scale" : "2x"
     },

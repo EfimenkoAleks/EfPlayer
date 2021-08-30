@@ -9,9 +9,9 @@ import Foundation
 
 class AudioViewModel: AudioViewModelProtocol {
     
-    private weak var router: AudioRouterModuleProtocol!
+    private weak var router: AudioRouterProtocol!
     
-    init(router: AudioRouterModuleProtocol) {
+    init(router: AudioRouterProtocol) {
         
     }
 }

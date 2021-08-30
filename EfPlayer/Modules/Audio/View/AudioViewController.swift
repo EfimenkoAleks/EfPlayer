@@ -10,7 +10,7 @@ import UIKit
 class AudioViewController: UIViewController {
     
     var viewModel: AudioViewModelProtocol!
-    var router: AudioRouterModuleProtocol!
+    var router: AudioRouterProtocol!
 
     @IBOutlet private weak var tableView: UITableView! {
         didSet {
@@ -47,7 +47,7 @@ class AudioViewController: UIViewController {
     }
 }
 
-extension AudioViewController: AudioViewControllerModuleProtocol {}
+extension AudioViewController: AudioViewControllerProtocol {}
 
 extension AudioViewController: UITableViewDelegate {}
 

@@ -9,13 +9,19 @@ import UIKit
 
 class AudioWireFrame {
     
-    static func create() -> UIViewController {
+    public struct AudioModule {
+        let view: UIViewController
+        let viewModel: AudioViewModelProtocol
+        let router: AudioRouterProtocol
+    }
+    
+    static func create() -> AudioModule {
         let view = AudioViewController()
         let router = AudioRouter(controller: view)
         let viewModel = AudioViewModel(router: router)
         view.viewModel = viewModel
         view.router = router
         
-        return view
+        return AudioModule(view: view, viewModel: viewModel, router: router)
     }
 }

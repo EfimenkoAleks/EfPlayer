@@ -25,3 +25,18 @@ var window: UIWindow?
     }
 }
 
+extension AppDelegate {
+    static var shared = AppDelegate()
+
+    func setRootController(rootController: UIViewController) {
+        let scene = UIApplication.shared.connectedScenes.first
+        guard let windowScene = (scene as? UIWindowScene) else { return }
+        let window = UIApplication.shared.windows.first
+        window!.windowScene = windowScene
+        window!.rootViewController?.dismiss(animated: true, completion: nil)
+        window!.rootViewController = rootController
+        window!.makeKeyAndVisible()
+    }
+}
+
+

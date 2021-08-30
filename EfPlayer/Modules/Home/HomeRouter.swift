@@ -8,10 +8,10 @@
 import UIKit
 
 class HomeRouter {
-    private var controller: HomeViewController?
+    weak var controller: UIViewController?
     
-    init(controller: HomeViewController) {
-        
+    init(controller: UIViewController) {
+        self.controller = controller
     }
 }
 

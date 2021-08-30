@@ -18,7 +18,8 @@ class SplachRouter {
 extension SplachRouter: SplachRouterProtocol {
     
     func routeToMain() {
-        let controller = VideoWireFrame.create()
-        self.controller.navigationController?.setViewControllers([controller], animated: true)
+        let controller = MainWireFrame.create()
+        AppDelegate.shared.setRootController(rootController: controller)
+//        self.controller.navigationController?.setViewControllers([controller], animated: true)
     }
 }

@@ -5,13 +5,13 @@
 //  Created by user on 25.08.2021.
 //
 
-import Foundation
+import UIKit
 
 class VideoRouter {
     
-    private var controller: VideoViewControllerProtocol!
+    weak var controller: UIViewController?
     
-    init(controller: VideoViewControllerProtocol) {
+    init(controller: UIViewController) {
         self.controller = controller
     }
 }
