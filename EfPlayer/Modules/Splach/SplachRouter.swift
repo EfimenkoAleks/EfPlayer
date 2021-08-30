@@ -15,4 +15,10 @@ class SplachRouter {
     }
 }
 
-extension SplachRouter: SplachRouterProtocol {}
+extension SplachRouter: SplachRouterProtocol {
+    
+    func routeToMain() {
+        let controller = VideoWireFrame.create()
+        self.controller.navigationController?.setViewControllers([controller], animated: true)
+    }
+}

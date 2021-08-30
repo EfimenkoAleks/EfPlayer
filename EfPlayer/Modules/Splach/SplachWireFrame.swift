@@ -8,7 +8,7 @@
 import UIKit
 
 class SplachWireFrame {
-    static func cteate() -> UIViewController {
+    static func create() -> UIViewController {
         let view = SplachViewController()
         let router = SplachRouter(controller: view)
         let viewModel = SplachViewModel(router: router)

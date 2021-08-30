@@ -6,19 +6,21 @@
 //
 
 import UIKit
+import AVFoundation
+import AVKit
 
 class VideoViewController: UIViewController {
     
     var viewModel: VideoViewModelProtocol!
     var router: VideoRouterProtocol!
 
-    @IBOutlet weak var collectioView: UICollectionView! {
+    @IBOutlet private weak var collectioView: UICollectionView! {
         didSet {
             let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
  //           layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
             let width: CGFloat = (UIScreen.main.bounds.width / 2) - 5
             let aspectRatio: CGFloat = 0.75 //9 / 12
-            let height = width * aspectRatio
+            let height = (width * aspectRatio) + 25
             layout.itemSize = CGSize(width: width, height: height)
             layout.minimumLineSpacing = 10
             layout.minimumInteritemSpacing = 5
@@ -59,11 +61,11 @@ class VideoViewController: UIViewController {
     }
     
     private func addBarButton() {
-        let image = UIImage(systemName: "plus")?.withRenderingMode(.alwaysTemplate)
-        let plusButton = UIBarButtonItem(image: image, style: .plain, target: self, action: #selector(VideoViewController.plusButton))
-        plusButton.tintColor = .white
+        let image = UIImage(systemName: "arrow.up.arrow.down")?.withRenderingMode(.alwaysTemplate)
+        let arrowButton = UIBarButtonItem(image: image, style: .plain, target: self, action: #selector(VideoViewController.plusButton))
+        arrowButton.tintColor = .white
         
-        self.navigationItem.leftBarButtonItem = plusButton
+        self.navigationItem.leftBarButtonItem = arrowButton
     }
     
     @objc func plusButton() {
@@ -80,20 +82,30 @@ extension VideoViewController: VideoDelegate {
 
 extension VideoViewController: VideoViewControllerProtocol {}
 
-extension VideoViewController: UICollectionViewDelegate {}
+extension VideoViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        let model = self.viewModel.videos(index: indexPath.item)
+        let player = AVPlayer(url: model.video)
+        let playerViewController = AVPlayerViewController()
+        playerViewController.player = player
+        present(playerViewController, animated: true) {
+            player.play()
+        }
+    }
+}
 
 extension VideoViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
+        return self.viewModel.countVideo
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         guard let cell = collectionView.dequeueCell(withType: VideoCollectionViewCell.self, for: indexPath) as? VideoCollectionViewCell else { return UICollectionViewCell() }
         
-        cell.backgroundColor = .systemRed
+        let model = self.viewModel.videos(index: indexPath.item)
+        cell.configur(model: model)
         return cell
     }
-    
-    
 }

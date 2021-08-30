@@ -8,18 +8,23 @@
 import UIKit
 
 class VideoCollectionViewCell: UICollectionViewCell {
+
+    @IBOutlet private weak var imageVideo: UIImageView!
+    @IBOutlet private weak var titleLabel: UILabel!
+    let videoService = DIContainer.default.videoService
     
-    @IBOutlet weak var containerView: UIView!
-    @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var subTitleLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        self.imageVideo.image = UIImage(named: "noIcon")
     }
     
-    func configur(model: URL) {
-        self.titleLabel.text = model.description
+    func configur(model: VideoModel) {
+        
+        self.titleLabel.text = model.title
+        if let image = self.videoService.loadImageFromDiskWith(url: model.image) {
+            self.imageVideo.image = UIImage(data: image)
+        }
     }
 
 }

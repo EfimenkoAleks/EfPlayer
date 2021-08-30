@@ -13,6 +13,8 @@ protocol VideoViewModelInputProtocol: class {
 
 protocol VideoViewModelOutputProtocol: class {
 //    var delegate: VideoDelegate? { get set }
+    var countVideo: Int { get }
+    func videos(index: Int) -> VideoModel
 }
 
 protocol VideoViewModelProtocol: VideoViewModelInputProtocol, VideoViewModelOutputProtocol {}
