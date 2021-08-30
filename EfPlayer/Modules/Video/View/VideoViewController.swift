@@ -61,11 +61,11 @@ class VideoViewController: UIViewController {
     }
     
     private func addBarButton() {
-        let image = UIImage(systemName: "plus")?.withRenderingMode(.alwaysTemplate)
-        let plusButton = UIBarButtonItem(image: image, style: .plain, target: self, action: #selector(VideoViewController.plusButton))
-        plusButton.tintColor = .white
+        let image = UIImage(systemName: "arrow.up.arrow.down")?.withRenderingMode(.alwaysTemplate)
+        let arrowButton = UIBarButtonItem(image: image, style: .plain, target: self, action: #selector(VideoViewController.plusButton))
+        arrowButton.tintColor = .white
         
-        self.navigationItem.leftBarButtonItem = plusButton
+        self.navigationItem.leftBarButtonItem = arrowButton
     }
     
     @objc func plusButton() {

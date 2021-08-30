@@ -52,7 +52,7 @@ extension VideoService: VideoServiceProtocol {
                     let video = VideoModel(title: urlVideo.lastPathComponent, image: urlVideo, video: urlVideo)
                     
                     videoUrls.append(video)
-                    self.seveVideoPreviewImage(url: urlVideo)
+                    self.saveVideoPreviewImage(url: urlVideo)
                 }
             }
         }
@@ -65,11 +65,12 @@ extension VideoService: VideoServiceProtocol {
         guard let url = URL(string: str) else { return [] }
         let name = url.lastPathComponent
         
+        self.saveVideoPreviewImage(url: url)
         let video = VideoModel(title: name, image: url, video: url)
-        return [video]
+        return [video, video, video, video, video]
     }
     
-    private func seveVideoPreviewImage(url: URL) {
+    private func saveVideoPreviewImage(url: URL) {
         
         let fileName = url.lastPathComponent
         if self.loadImageFromDiskWith(url: url) != nil {
